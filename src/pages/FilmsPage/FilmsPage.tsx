@@ -3,14 +3,20 @@ import SearchInput from "../../components/SearchInput";
 import { TestText } from "../../components/TestText";
 import { ToogleThemeButton } from "../../components/ToogleThemeButton";
 
-interface Props {}
+export type FilmsSearchType = {
+  description: string;
+  id: string;
+  image: string;
+  resultType: string;
+  title: string;
+};
 
-const FilmsPage = () => {
-  const [searchData, setSearchData] = useState({});
+const FilmsPage: React.FC = () => {
+  const [searchData, setSearchData] = useState([] as FilmsSearchType[]);
   return (
     <div>
       Films page
-      <ToogleThemeButton />
+      {/* <ToogleThemeButton /> */}
       <SearchInput searchData={searchData} setSearchData={setSearchData} />
       <TestText />
     </div>

@@ -1,10 +1,11 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MOVIE_SEARCH_URL } from "../constants/constants";
-// import {MOVIES_DB_API_KEY} from '../../env'
+import { FilmsSearchType } from "../pages/FilmsPage/FilmsPage";
+import { MovieItem } from "./MovieItem/MovieItem";
 
 interface IProps {
-  searchData: object | undefined | any;
-  setSearchData: Dispatch<SetStateAction<object>>;
+  searchData: FilmsSearchType[];
+  setSearchData: Dispatch<SetStateAction<FilmsSearchType[]>>;
 }
 
 const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
@@ -12,16 +13,19 @@ const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-
-    // fetch(`${MOVIE_SEARCH_URL}/${process.env.MOVIES_DB_API_KEY}/${query}`)
-    fetch(`${MOVIE_SEARCH_URL}/k_711l06me/${query}`)
+    console.log(`api key: ${process.env.REACT_APP_MOVIES_DB_API_KEY}`);
+    fetch(
+      `${MOVIE_SEARCH_URL}/${process.env.REACT_APP_MOVIES_DB_API_KEY}/${query}`
+    )
       .then((res) => {
         if (res.ok) return res.json();
       })
       .then((data) => setSearchData(data.results))
       .catch((e) => console.log(`error: ${e}`));
 
+
     console.log(`search query send: ${query}`);
+    // setSearchData()
     setQuery("");
   };
 
@@ -37,9 +41,13 @@ const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
         <button type="submit">Szukaj</button>
       </form>
 
-      {/* {searchData?.map((movie) => {
-        console.log(movie);
-      })} */}
+      {searchData?.map((movie: FilmsSearchType) => {
+        return (
+          <div>
+            <MovieItem movie={movie} />
+          </div>
+        );
+      })}
     </div>
   );
 };
