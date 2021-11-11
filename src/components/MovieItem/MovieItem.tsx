@@ -7,9 +7,9 @@ interface Props {
 
 export const MovieItem: React.FC<Props> = ({ movie }) => {
   return (
-    <div key={movie.id}>
+    <a href="/" key={movie.id}>
       <h3>{movie.title}{movie.description}</h3>
       <img src={movie.image} alt={movie.title} height="200px" />
-    </div>
+    </a>
   );
 };

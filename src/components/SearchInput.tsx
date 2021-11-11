@@ -10,8 +10,10 @@ interface IProps {
 
 const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
   const [query, setQuery] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
 
   const submitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+    setLoading(true);
     e.preventDefault();
     console.log(`api key: ${process.env.REACT_APP_MOVIES_DB_API_KEY}`);
     fetch(
@@ -20,15 +22,19 @@ const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
       .then((res) => {
         if (res.ok) return res.json();
       })
-      .then((data) => setSearchData(data.results))
+      .then((data) => {
+        setLoading(false);
+        setSearchData(data.results);
+      })
       .catch((e) => console.log(`error: ${e}`));
-
 
     console.log(`search query send: ${query}`);
     // setSearchData()
     setQuery("");
   };
 
+  if (loading) return <div>loading..</div>;
+  
   console.log(searchData);
   return (
     <div>
