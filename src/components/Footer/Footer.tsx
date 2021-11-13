@@ -1,9 +1,9 @@
 import React from 'react'
 
-export const LoginPage: React.FC  = () => {
+export const Footer = () => {
   return (
     <div>
-      Login Page
+      Footer
     </div>
   )
 }
