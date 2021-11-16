@@ -1,11 +1,14 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useThemeContext } from "../../hooks/UseThemeContext";
+import { ToogleThemeButton } from "../ToogleThemeButton";
 
 interface Props {}
 
 export const Nav = (props: Props) => {
+  const { dark } = useThemeContext();
   return (
-    <div>
+    <div style={dark ? {backgroundColor: "gray"} : {backgroundColor: "lightgray"}}>
       <nav>
         <ul>
           <li>
@@ -22,6 +25,7 @@ export const Nav = (props: Props) => {
           </li>
         </ul>
       </nav>
+      <ToogleThemeButton />
     </div>
   );
 };

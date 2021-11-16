@@ -1,13 +1,13 @@
-import React from 'react'
+import { useThemeContext } from "../hooks/UseThemeContext";
 
-interface Props {
-  
-}
+export const ToogleThemeButton = () => {
+  const { dark, toggleDark } = useThemeContext();
 
-export const ToogleThemeButton = (props: Props) => {
+  console.log('render: ' + dark)
   return (
-    <div>
-      <button>Theme toggle</button>
-    </div>
-  )
-}
+    <>
+      <h1>{dark ? "🌙" : "🌞"}</h1>
+      <button onClick={toggleDark}>Theme toggle</button>
+    </>
+  );
+};
