@@ -7,9 +7,10 @@ interface Props {
   movie: FilmsSearchType;
 }
 
+
 export const MovieItem: React.FC<Props> = ({ movie }) => {
   return (
-    <Link to={`${ROUTES.FILMS}/${movie.id}`} key={movie.id}>
+    <Link to={{pathname:`${ROUTES.FILMS}/${movie.id}`, state: movie}} key={movie.id}>
       <h3>
         {movie.title}
         {movie.description}
