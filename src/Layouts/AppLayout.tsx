@@ -5,10 +5,8 @@ import { Nav } from "../components/Nav/Nav";
 export const AppLayout: React.FC<{}> = ({ children }) => {
   return (
     <>
-      <div>
-        <Nav />
-      </div>
-      <div>{children}</div>
+      <Nav />
+      <section className="max_width">{children}</section>
       <Footer />
     </>
   );

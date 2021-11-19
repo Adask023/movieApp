@@ -18,8 +18,8 @@ export type SingleMovieType = {
 };
 
 export const SingleMovie: React.FC<IParams> = (movie) => {
-  const [movieData, setMovieData] = useState<ISingleMovie | undefined>(
-    {} as SingleMovieType | undefined
+  const [movieData, setMovieData] = useState<ISingleMovie | undefined | any>(
+    {} as SingleMovieType | undefined 
   );
   const [loading, setLoading] = useState(true);
   const id = movie.match.params.id;

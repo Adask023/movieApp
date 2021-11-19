@@ -1,4 +1,4 @@
-import "./App.css";
+import "./styles/global.scss";
 import { AppProvider } from "./context/providers/AppProvider";
 
 function App() {
