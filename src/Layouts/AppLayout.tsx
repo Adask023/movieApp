@@ -7,7 +7,7 @@ export const AppLayout: React.FC<{}> = ({ children }) => {
     <>
       <Nav />
       <section className="max_width">{children}</section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 };

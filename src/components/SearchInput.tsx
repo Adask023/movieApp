@@ -1,7 +1,6 @@
 import React, { Dispatch, SetStateAction, useState } from "react";
 import { MOVIE_SEARCH_URL } from "../constants/constants";
 import { FilmsSearchType } from "../pages/FilmsPage/FilmsPage";
-import { MovieItem } from "./MovieItem/MovieItem";
 
 interface IProps {
   searchData: FilmsSearchType[];
@@ -47,13 +46,7 @@ const SearchInput: React.FC<IProps> = ({ searchData, setSearchData }) => {
         <button type="submit">Szukaj</button>
       </form>
 
-      {searchData?.map((movie: FilmsSearchType) => {
-        return (
-          <div>
-            <MovieItem movie={movie} />
-          </div>
-        );
-      })}
+      
     </div>
   );
 };

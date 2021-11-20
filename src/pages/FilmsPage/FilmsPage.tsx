@@ -1,7 +1,8 @@
 import React, { useState } from "react";
+import { MovieItem } from "../../components/MoviesCardList/MovieItem/MovieItem";
+import { MoviesCardList } from "../../components/MoviesCardList/MoviesCardList";
 import SearchInput from "../../components/SearchInput";
-import { TestText } from "../../components/TestText";
-import { ToogleThemeButton } from "../../components/ToogleThemeButton";
+import "../../styles/FilmsPage.scss";
 
 export type FilmsSearchType = {
   description: string;
@@ -14,11 +15,13 @@ export type FilmsSearchType = {
 const FilmsPage: React.FC = () => {
   const [searchData, setSearchData] = useState([] as FilmsSearchType[]);
   return (
-    <div>
-      Films page
-      {/* <ToogleThemeButton /> */}
-      <SearchInput searchData={searchData} setSearchData={setSearchData} />
-      <TestText />
+    <div className="movie__page">
+      <div className="section__header">
+        <h1>Films page</h1>
+        <SearchInput searchData={searchData} setSearchData={setSearchData} />
+      </div>
+
+      <MoviesCardList data={searchData} />
     </div>
   );
 };

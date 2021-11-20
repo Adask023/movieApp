@@ -1,0 +1,54 @@
+.movie__page {
+  margin-top: 3rem;
+  .section__header {
+    h1 {
+      padding-bottom: 2rem;
+      font-size: 2.4rem;
+    }
+  }
+
+  .card__container {
+    display: grid;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+
+    div {
+      padding: 2rem;
+      a {
+        text-decoration: none;
+        color: black;
+        display: block;
+        height: 100%;
+        width: 100%;
+        &:hover  img {
+          transform: scale(1.1);
+          transition: .4s ease all;
+        }
+
+        figure {
+          // background-color: transparent;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          flex-direction: column;
+
+          .card_ing__wrapper {
+            
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            // max-width: 50%;
+            padding: 0;
+            margin-top: 2rem;
+
+            height: 400px;
+            width: calc(400px * (10/16));
+          }
+          img {
+          }
+        }
+      }
+    }
+  }
+}
