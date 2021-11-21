@@ -14,7 +14,8 @@ function useSearch(query: string) {
       .then((d) => {
         setData(d.results);
         setDone(true);
-      });
+      })
+      .catch((e) => console.log(e));
   }, [query]);
 
   return {
