@@ -14,8 +14,6 @@
         position: relative;
         svg {
           height: 35px;
-          // line-height: 45px;
-          // margin: 0 10px -3px 25px;
           position: absolute;
           margin-left: 5px;
           top: 50%;
@@ -25,13 +23,11 @@
         }
         input {
           border: none;
-          // background: lightgray;
           min-width: 250px;
           width: 30%;
           line-height: 45px;
           font-size: 1rem;
           padding-left: 45px;
-          // border-bottom: 2px solid lightcoral;
           box-shadow: inset 0 0 0.5em lightgray, 0 0 0.5em lightcoral;
         }
       }

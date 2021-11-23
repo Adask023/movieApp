@@ -21,7 +21,31 @@ export const defaultSettingsState = {
   {
     settingName: "actors",
     settingValue: true,
-  }],
+  },
+  {
+    settingName: "example",
+    settingValue: true,
+  },
+  {
+    settingName: "example2",
+    settingValue: true,
+  },
+  {
+    settingName: "example3",
+    settingValue: true,
+  },
+  {
+    settingName: "example4",
+    settingValue: true,
+  },
+  {
+    settingName: "example5",
+    settingValue: true,
+  },
+  {
+    settingName: "example6",
+    settingValue: true,
+  }]
 };
 
 export const SettingsContext =

@@ -1,6 +1,7 @@
 import React from "react";
 import { settingsConfigType } from "../../context/SettingsContext";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
+import "../../styles/SettingsPage.scss";
 
 export const SettingPage: React.FC = () => {
   const { settingsState, setSettingsValue } = useSettingsContext();
@@ -14,37 +15,34 @@ export const SettingPage: React.FC = () => {
   };
 
   return (
-    <div>
+    <div className="settings__page">
       <h1>SettingsPage</h1>
 
-      <div className="content" style={{ marginTop: "40px" }}>
-        <h3>Select variables to show on film page</h3>
-        {settingsState.settings.map((item: settingsConfigType) => {
-          return (
-            <button
-              key={item.settingName}
-              value={item.settingName}
-              onClick={(e) => handleSettingsChange(e)}
-              style={
-                item.settingValue
-                  ? { backgroundColor: "gray" }
-                  : { backgroundColor: "lightgray" }
-              }
-            >
-              {item.settingName}
-            </button>
-          );
-        })}
+      <div className="content">
+        <div className="section__header">
+          <h3>Select variables to show on film page</h3>
+        </div>
 
-        {/* <button
-          value="title"
-          onClick={(e) => 
-            handleSettingsChange(e)
-          }
-        >
-          Toogle title
-        </button>
-        <button>Toogle description</button> */}
+        <div className="settings__container">
+          {settingsState.settings.map((item: settingsConfigType) => {
+            return (
+              <div className="settings__item">
+                <button
+                  key={item.settingName}
+                  value={item.settingName}
+                  onClick={(e) => handleSettingsChange(e)}
+                  style={
+                    item.settingValue
+                      ? { opacity: "0.5" }
+                      : { opacity: "1"}
+                  }
+                >
+                  {item.settingName.toUpperCase()}
+                </button>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );
