@@ -1,5 +1,4 @@
-import React, { FC, ReactChild, useState } from "react";
-import { theme } from "../../Utils/Theme";
+import React, { FC, useState } from "react";
 import { defaultState, ThemeContext } from "../ThemeContext";
 
 export const ThemeProvider: FC<{}> = ({ children }) => {
