@@ -1,0 +1,13 @@
+.single_movie__wrapper{
+  margin-top: 2rem;
+
+  .movie_header__section{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    .movie_img__wrapper {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}

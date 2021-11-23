@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { MOVIE_INFO } from "../../constants/constants";
+import { useSettingsContext } from "../../hooks/useSettingsContext";
+import "../../styles/SingleMovie.scss";
 
 interface IParams {
   match: { params: { id?: string | undefined } };
@@ -19,7 +21,7 @@ export type SingleMovieType = {
 
 export const SingleMovie: React.FC<IParams> = (movie) => {
   const [movieData, setMovieData] = useState<ISingleMovie | undefined | any>(
-    {} as SingleMovieType | undefined 
+    {}
   );
   const [loading, setLoading] = useState(true);
   const id = movie.match.params.id;
@@ -40,20 +42,34 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
 
   console.log(movieData);
 
+  const { settingsState } = useSettingsContext();
+
   if (loading) {
     return <div>loading...</div>;
   } else {
-    const {
-      title,
-      plot,
-      image,
-    }: { title: string; plot: string; image: string } = movieData;
+    const { title, plot, image }: SingleMovieType = movieData;
 
     return (
-      <div>
-        <h1>{title}</h1>
-        <p>{plot}</p>
-        <img height="300px" src={image} alt="" />
+      <div className="single_movie__wrapper">
+        <div className="movie_header__section">
+          <div className="movie_img__wrapper">
+            <img height="400px" src={image} alt="" />
+          </div>
+
+          <p>
+            <h1>{title}</h1>
+            <p>{plot}</p>
+          </p>
+        </div>
+        <div className="movie__details">
+          {/* {settingsState.settings.map((informationItem: any) => {
+            return(
+              <p>
+                {movieData[informationItem.settingName]}
+              </p>
+            )
+          })} */}
+        </div>
       </div>
     );
   }
