@@ -13,6 +13,9 @@
         .popular_movie__wrapper {
           margin: 1.4rem 0;
           figure {
+            img {
+              height: 200px;
+            }
             figcaption {
               color: black;
             }
