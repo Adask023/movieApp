@@ -1,18 +1,20 @@
 import React from "react";
-import { settingsConfigType } from "../../context/SettingsContext";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
 import "../../styles/SettingsPage.scss";
 
 export const SettingPage: React.FC = () => {
-  const { settingsState, setSettingsValue } = useSettingsContext();
+  const { settings, setSettingsValue } = useSettingsContext();
 
-  console.log(settingsState);
+  console.log(settings);
 
   const handleSettingsChange = (e: React.MouseEvent<HTMLElement>) => {
     const key = e.target as HTMLButtonElement;
     setSettingsValue(key.value);
     console.log(key.value);
   };
+
+  console.log(settings);
+  console.log(settings.showTitle);
 
   return (
     <div className="settings__page">
@@ -24,7 +26,12 @@ export const SettingPage: React.FC = () => {
         </div>
 
         <div className="settings__container">
-          {settingsState.settings.map((item: settingsConfigType) => {
+          <div className="settings__item">
+            <button value="showTitle" onClick={(e) => handleSettingsChange(e)}>
+              Title
+            </button>
+          </div>
+          {/* {settingsState.settings.map((item: settingsConfigType) => {
             return (
               <div className="settings__item">
                 <button
@@ -41,7 +48,7 @@ export const SettingPage: React.FC = () => {
                 </button>
               </div>
             );
-          })}
+          })} */}
         </div>
       </div>
     </div>

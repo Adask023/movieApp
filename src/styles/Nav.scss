@@ -54,6 +54,15 @@ header {
           }
         }
       }
+      .toggle_nav__button svg{
+        font-size: 2.4rem;
+        cursor: pointer;
+        margin-left: 1rem;
+        &:hover {
+          color: lightcoral;
+          transition: 0.2s all;
+        }
+      }
     }
     .toogle__button {
       font-size: 2rem;
@@ -87,13 +96,14 @@ header {
     .toggle_mobile__button {
       text-align: right;
       height: 3em;
+      cursor: pointer;
       svg {
         font-size: 2.4rem;
         cursor: pointer;
-        &:hover {
-          color: lightcoral;
-          transition: 0.2s all;
-        }
+      }
+      &:hover {
+        color: lightcoral;
+        transition: 0.2s all;
       }
     }
     .mobile_nav__list {

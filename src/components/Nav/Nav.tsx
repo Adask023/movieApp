@@ -63,8 +63,8 @@ export const Nav = (props: Props) => {
               </li>
             </ul>
           ) : (
-            <div className="toggle_mobile__button" onClick={toggleMobileNav}>
-              <FontAwesomeIcon icon={faBars} />
+            <div className="toggle_nav__button">
+              <FontAwesomeIcon icon={faBars} onClick={toggleMobileNav} />
             </div>
           )}
         </nav>
