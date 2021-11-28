@@ -3,6 +3,8 @@ import { MOVIE_INFO } from "../../constants/constants";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
 import "../../styles/SingleMovie.scss";
 
+import { useLocalStorage } from "../../hooks/useLocalStorage";
+
 interface IParams {
   match: { params: { id?: string | undefined } };
 }
@@ -42,7 +44,11 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
 
   console.log(movieData);
 
-  const { settingsState } = useSettingsContext();
+  // const { settings } = useSettingsContext();
+
+  const handleLocalStorage = () => {
+    console.log("local storage handle");
+  };
 
   if (loading) {
     return <div>loading...</div>;
@@ -70,6 +76,7 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
             )
           })} */}
         </div>
+        <button onClick={handleLocalStorage}>Add to favourite</button>
       </div>
     );
   }

@@ -17,10 +17,11 @@ export const SettingsProvider: FC<{}> = ({ children }) => {
 
     // console.log(prevState)
 
-    setSettings((settings) => ({
-      ...settings,
-      [key]: !settings[key],
-    }));
+    // NOT WORKING 
+    // setSettings((settings) => ({
+    //   ...settings,
+    //   [key]: !settings[key],
+    // }));
 
     // switch (key) {
     //   case "title":
