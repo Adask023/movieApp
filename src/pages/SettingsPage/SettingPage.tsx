@@ -1,4 +1,5 @@
 import React from "react";
+import { SettingsButton } from "../../components/Buttons/SettingsButton";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
 import "../../styles/SettingsPage.scss";
 
@@ -19,36 +20,29 @@ export const SettingPage: React.FC = () => {
   return (
     <div className="settings__page">
       <h1>SettingsPage</h1>
-
       <div className="content">
         <div className="section__header">
           <h3>Select variables to show on film page</h3>
         </div>
-
         <div className="settings__container">
-          <div className="settings__item">
-            <button value="showTitle" onClick={(e) => handleSettingsChange(e)}>
-              Title
-            </button>
-          </div>
-          {/* {settingsState.settings.map((item: settingsConfigType) => {
-            return (
-              <div className="settings__item">
-                <button
-                  key={item.settingName}
-                  value={item.settingName}
-                  onClick={(e) => handleSettingsChange(e)}
-                  style={
-                    item.settingValue
-                      ? { opacity: "0.5" }
-                      : { opacity: "1"}
-                  }
-                >
-                  {item.settingName.toUpperCase()}
-                </button>
-              </div>
-            );
-          })} */}
+          <SettingsButton
+            settingButtonName="Title"
+            value="showTitle"
+            isSettingActive={settings.showTitle}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Description"
+            value="showDescription"
+            isSettingActive={settings.showDescription}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Actors"
+            value="showActors"
+            isSettingActive={settings.showActors}
+            handleSettingsChange={handleSettingsChange}
+          />
         </div>
       </div>
     </div>

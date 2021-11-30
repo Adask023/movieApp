@@ -7,8 +7,9 @@
   .content {
     margin-top: 40px;
     .settings__container {
-      margin: 4rem auto;
+      margin: 1rem auto;
       width: 80%;
+      height: auto;
       display: grid;
       align-items: center;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -22,7 +23,7 @@
           height: 100%;
           cursor: pointer;
           border-color: transparent;
-          &:hover{
+          &:hover {
             box-shadow: inset 0 0 0.5em lightgray, 0 0 0.5em lightcoral;
             transition: 0.2s all;
           }

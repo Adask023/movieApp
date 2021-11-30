@@ -1,6 +1,7 @@
 import { createContext } from "react";
 
 export type settingsType = {
+  [key: string]: any;
   showTitle: boolean;
   showDescription: boolean;
   showActors: boolean;
@@ -8,7 +9,7 @@ export type settingsType = {
 
 export type contextSettingsType = {
   settings: settingsType;
-  setSettingsValue: (key: string) => void;
+  setSettingsValue: (settingsKey: string) => void;
 };
 
 export const defaultSettingsState: contextSettingsType = {
@@ -17,7 +18,7 @@ export const defaultSettingsState: contextSettingsType = {
     showDescription: true,
     showActors: false,
   },
-  setSettingsValue: () => {},
+  setSettingsValue() {},
 };
 
 export const SettingsContext = createContext(defaultSettingsState);

@@ -7,6 +7,7 @@ interface Props {
   movie: FilmsSearchType;
 }
 
+
 export const MovieItem: React.FC<Props> = ({ movie }) => {
   return (
     <Link
