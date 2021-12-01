@@ -5,6 +5,12 @@ export type settingsType = {
   showTitle: boolean;
   showDescription: boolean;
   showActors: boolean;
+
+  showRatio: boolean;
+  showDirectors: boolean;
+  showGenres: boolean;
+  showLanguages: boolean;
+  showMetacriticRating: boolean;
 };
 
 export type contextSettingsType = {
@@ -16,7 +22,12 @@ export const defaultSettingsState: contextSettingsType = {
   settings: {
     showTitle: true,
     showDescription: true,
-    showActors: false,
+    showActors: true,
+    showRatio: true,
+    showDirectors: true,
+    showGenres: true,
+    showLanguages: true,
+    showMetacriticRating: true,
   },
   setSettingsValue() {},
 };

@@ -13,7 +13,7 @@ export const SettingsButton = (props: Props) => {
       <button
         value={props.value}
         onClick={(e) => props.handleSettingsChange(e)}
-        style={props.isSettingActive ? { opacity: "0.5" } : { opacity: "1" }}
+        style={!props.isSettingActive ? { opacity: "0.5" } : { opacity: "1" }}
       >
         {props.settingButtonName}
       </button>

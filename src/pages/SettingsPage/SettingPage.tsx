@@ -22,7 +22,7 @@ export const SettingPage: React.FC = () => {
       <h1>SettingsPage</h1>
       <div className="content">
         <div className="section__header">
-          <h3>Select variables to show on film page</h3>
+          <h3>Select informations to show on movie page</h3>
         </div>
         <div className="settings__container">
           <SettingsButton
@@ -41,6 +41,37 @@ export const SettingPage: React.FC = () => {
             settingButtonName="Actors"
             value="showActors"
             isSettingActive={settings.showActors}
+            handleSettingsChange={handleSettingsChange}
+          />
+
+          <SettingsButton
+            settingButtonName="Content Rating"
+            value="showRatio"
+            isSettingActive={settings.showRatio}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Directors"
+            value="showDirectors"
+            isSettingActive={settings.showDirectors}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Genres"
+            value="showGenres"
+            isSettingActive={settings.showGenres}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Languages"
+            value="showLanguages"
+            isSettingActive={settings.showLanguages}
+            handleSettingsChange={handleSettingsChange}
+          />
+          <SettingsButton
+            settingButtonName="Metacritic Rating"
+            value="showMetacriticRating"
+            isSettingActive={settings.showMetacriticRating}
             handleSettingsChange={handleSettingsChange}
           />
         </div>

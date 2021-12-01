@@ -9,12 +9,11 @@ interface IParams {
   match: { params: { id?: string } };
 }
 
-export type SingleMovieType = {
-  title: string;
-  plot: string;
-  image: string;
+type CharacterInMovieType = {
+  asCharacter: string;
   id: string;
-  year: string;
+  image: string;
+  name: string;
 };
 
 type SaveToFavType = {
@@ -22,6 +21,23 @@ type SaveToFavType = {
   id: string;
   image: string;
   description: string;
+};
+
+export type SingleMovieType = {
+  title: string;
+  plot: string;
+  image: string;
+  id: string;
+  year: string;
+  actorList: CharacterInMovieType[];
+
+  contentRating: string;
+  directors: string;
+  genres: string;
+  languages: string;
+  metacriticRating: string;
+
+  // similars
 };
 
 export const SingleMovie: React.FC<IParams> = (movie) => {
@@ -47,9 +63,21 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
   }, []);
 
   console.log(movieData);
-  const { title, plot, image, id, year }: SingleMovieType = movieData;
+  const {
+    title,
+    plot,
+    image,
+    id,
+    year,
+    actorList,
+    contentRating,
+    directors,
+    genres,
+    languages,
+    metacriticRating,
+  }: SingleMovieType = movieData;
 
-  // const { settings } = useSettingsContext();
+  const { settings } = useSettingsContext();
 
   const [localStorageFavourite, setLocalStorageFavourite] = useLocalStorage<
     SaveToFavType[] | null
@@ -93,21 +121,58 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
             <img height="400px" src={image} alt="" />
           </div>
 
-          <p>
-            <h1>{title}</h1>
-            <p>{plot}</p>
-          </p>
+          {(settings.showDescription || settings.showTitle) && (
+            <p>
+              {settings.showTitle && <h1>{title}</h1>}
+              {settings.showDescription && <p>{plot}</p>}
+            </p>
+          )}
         </div>
         <div className="movie__details">
-          {/* {settingsState.settings.map((informationItem: any) => {
-            return(
-              <p>
-                {movieData[informationItem.settingName]}
-              </p>
-            )
-          })} */}
+          {settings.showActors && (
+            <p className="actor_list__section">
+              <h4>Actors list</h4>
+              <ul>
+                {actorList.map((actor) => {
+                  return <li key={actor.id}> {actor.name}</li>;
+                })}
+              </ul>
+            </p>
+          )}
+
+          {settings.showRatio && (
+            <p className="content_rating__section">
+              <h4>Content Rating</h4>
+              {contentRating}
+            </p>
+          )}
+          {settings.showDirectors && (
+            <p className="directors__section">
+              <h4>Directors</h4>
+              {directors}
+            </p>
+          )}
+          {settings.showGenres && (
+            <p className="genres__section">
+              <h4>Genres</h4>
+              {genres}
+            </p>
+          )}
+          {settings.showLanguages && (
+            <p className="languages__section">
+              <h4>Languages</h4>
+              {languages}
+            </p>
+          )}
+          {settings.showMetacriticRating && (
+            <p className="metacriticRating__section">
+              <h4>Metacritic Rating</h4>
+              {metacriticRating}/100
+            </p>
+          )}
         </div>
-        <button onClick={handleLocalStorage}>Add to favourite</button>
+
+        {/* <button onClick={handleLocalStorage}>Add to favourite</button>
         <button onClick={() => console.log(localStorageFavourite)}>
           check local storage
         </button>
@@ -118,8 +183,18 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
           }}
         >
           clear local storage
-        </button>
+        </button> */}
       </div>
     );
   }
 };
+
+/*
+0:
+asCharacter: "Trevor"
+id: "nm6016511"
+image: "https://imdb-api.com/images/original/MV5BYjM2NmFiNGYtODQ1OC00ZTE5LTg4ZWYtYjFmODk4YmUyZDMzXkEyXkFqcGdeQXVyNjQ3NDAwOTA@._V1_Ratio0.7727_AL_.jpg"
+name: "Finn Wolfhard"
+
+
+*/
