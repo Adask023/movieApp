@@ -2,47 +2,20 @@ import React, { useEffect, useState } from "react";
 import { MOVIE_INFO } from "../../constants/constants";
 import { useSettingsContext } from "../../hooks/useSettingsContext";
 import "../../styles/SingleMovie.scss";
-
-import { useLocalStorage } from "../../hooks/useLocalStorage";
+import {
+  CharacterInMovieType,
+  SaveToFavType,
+  SingleMovieType,
+} from "../../types/SingleMovie.types";
 
 interface IParams {
   match: { params: { id?: string } };
 }
 
-type CharacterInMovieType = {
-  asCharacter: string;
-  id: string;
-  image: string;
-  name: string;
-};
-
-type SaveToFavType = {
-  title: string;
-  id: string;
-  image: string;
-  description: string;
-};
-
-export type SingleMovieType = {
-  title: string;
-  plot: string;
-  image: string;
-  id: string;
-  year: string;
-  actorList: CharacterInMovieType[];
-
-  contentRating: string;
-  directors: string;
-  genres: string;
-  languages: string;
-  metacriticRating: string;
-
-  // similars
-};
-
 export const SingleMovie: React.FC<IParams> = (movie) => {
   const [movieData, setMovieData] = useState({} as SingleMovieType);
   const [loading, setLoading] = useState(true);
+  const [isFav, setIsFav] = useState(false);
   const paramsId = movie.match.params.id;
 
   useEffect(() => {
@@ -60,6 +33,19 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
         setLoading(false);
       })
       .catch((e) => console.log(e));
+
+    const localFavouriteMovies = JSON.parse(
+      localStorage.getItem("favouriteMovies") as string
+    );
+    if (localFavouriteMovies) {
+      localFavouriteMovies.map((localItem: SaveToFavType) => {
+        if (localItem.id === paramsId) {
+          setIsFav(true);
+        } else {
+          setIsFav(false);
+        }
+      });
+    }
   }, []);
 
   console.log(movieData);
@@ -79,35 +65,49 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
 
   const { settings } = useSettingsContext();
 
-  const [localStorageFavourite, setLocalStorageFavourite] = useLocalStorage<
-    SaveToFavType[] | null
-  >("favouritesMovies");
-  console.log(localStorageFavourite);
-
-  let prev = localStorageFavourite as SaveToFavType[];
-
   const handleLocalStorage = () => {
     console.log("local storage handle");
-    if (localStorageFavourite === null) {
-      // let prev = localStorageFavourite;
-      setLocalStorageFavourite([
+
+    const localFavouriteMovies = JSON.parse(
+      localStorage.getItem("favouriteMovies") as string
+    );
+
+    if (localFavouriteMovies && !isFav) {
+      const localMoviesToSave = [
+        ...localFavouriteMovies,
         {
           title,
           id,
           image,
           description: year,
         },
-      ]);
+      ];
+      localStorage.setItem(
+        "favouriteMovies",
+        JSON.stringify(localMoviesToSave)
+      );
+      setIsFav(true);
+    } else if (localFavouriteMovies && isFav) {
+      const newLocalFav = localFavouriteMovies.filter(
+        (movieItem: SaveToFavType) => movieItem.id !== paramsId
+      );
+      localStorage.setItem("favouriteMovies", JSON.stringify(newLocalFav));
+
+      setIsFav(false);
     } else {
-      setLocalStorageFavourite([
-        ...prev,
-        {
-          title,
-          id,
-          image,
-          description: year,
-        },
-      ]);
+      localStorage.setItem(
+        "favouriteMovies",
+        JSON.stringify([
+          {
+            title,
+            id,
+            image,
+            description: year,
+          },
+        ])
+      );
+      setIsFav(true);
+      console.log("set");
     }
   };
 
@@ -133,8 +133,20 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
             <p className="actor_list__section">
               <h4>Actors list</h4>
               <ul>
-                {actorList.map((actor) => {
-                  return <li key={actor.id}> {actor.name}</li>;
+                {actorList.map((actor: CharacterInMovieType) => {
+                  return (
+                    <li key={actor.id}>
+                      <div className="char_item__header">
+                        <h5>{actor.name}</h5> as {actor.asCharacter}
+                      </div>
+                      <img
+                        src={actor.image}
+                        alt={actor.name}
+                        width="200px"
+                        height="auto"
+                      />
+                    </li>
+                  );
                 })}
               </ul>
             </p>
@@ -172,18 +184,9 @@ export const SingleMovie: React.FC<IParams> = (movie) => {
           )}
         </div>
 
-        {/* <button onClick={handleLocalStorage}>Add to favourite</button>
-        <button onClick={() => console.log(localStorageFavourite)}>
-          check local storage
+        <button className="add_fav__button" onClick={handleLocalStorage}>
+          {isFav ? "Remove from favourite" : "Add to favourite"}
         </button>
-
-        <button
-          onClick={() => {
-            setLocalStorageFavourite(null);
-          }}
-        >
-          clear local storage
-        </button> */}
       </div>
     );
   }

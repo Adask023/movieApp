@@ -6,16 +6,19 @@ import {
 } from "../SettingsContext";
 
 export const SettingsProvider: FC<{}> = ({ children }) => {
-  const [settings, setSettings] =
-    useState<settingsType>(defaultSettingsState.settings);
+  const [settings, setSettings] = useState<settingsType>(
+    defaultSettingsState.settings
+  );
 
   const setSettingsValue = (settingsKey: string) => {
     console.log(`context value ${settingsKey}`);
 
-    setSettings((settings) => ({
+    const settingsToSave = {
       ...settings,
       [settingsKey]: !settings[settingsKey],
-    }));
+    };
+    setSettings(settingsToSave);
+    localStorage.setItem("settingsConfig", JSON.stringify(settingsToSave));
   };
 
   return (

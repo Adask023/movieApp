@@ -18,7 +18,7 @@ export type contextSettingsType = {
   setSettingsValue: (settingsKey: string) => void;
 };
 
-export const defaultSettingsState: contextSettingsType = {
+export let defaultSettingsState: contextSettingsType = {
   settings: {
     showTitle: true,
     showDescription: true,
@@ -31,5 +31,16 @@ export const defaultSettingsState: contextSettingsType = {
   },
   setSettingsValue() {},
 };
+
+const value = localStorage.getItem("settingsConfig");
+
+if (value) {
+  try {
+    const loadSettingsState = JSON.parse(value);
+    defaultSettingsState.settings = loadSettingsState;
+  } catch (e) {
+    console.log(`Local storage error: ${e}`);
+  }
+}
 
 export const SettingsContext = createContext(defaultSettingsState);

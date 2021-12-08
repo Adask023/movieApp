@@ -1,13 +1,31 @@
-.single_movie__wrapper{
+.single_movie__wrapper {
   margin-top: 2rem;
 
-  .movie_header__section{
+  .movie_header__section {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     .movie_img__wrapper {
       display: flex;
       justify-content: center;
       align-items: center;
+    }
+  }
+  .movie__details {
+    margin-top: 2rem;
+
+    .actor_list__section {
+      padding: 1rem;
+
+      h4 {
+        text-align: left;
+      }
+      ul {
+        list-style: none;
+        display: grid;
+        li {
+          display: block;
+        }
+      }
     }
   }
 }
